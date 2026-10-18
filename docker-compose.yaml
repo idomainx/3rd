@@ -4,17 +4,15 @@ services:
     restart: unless-stopped
     environment:
       - SERVICE_FQDN_APP_3000
-      - NODE_ENV=production
       - PORT=3000
-      - DATA_DIR=/data
-      - ADMIN_PASSWORD=${SERVICE_PASSWORD_ADMIN}
-      - SESSION_SECRET=${SERVICE_PASSWORD_SESSION}
-      - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN:?}
-      - CF_PAGES_PROJECT=${CF_PAGES_PROJECT:?}
-      - CLOUDFLARE_ACCOUNT_ID=${CLOUDFLARE_ACCOUNT_ID:-}
-      - CF_PAGES_BRANCH=${CF_PAGES_BRANCH:-main}
+      - ADMIN_USER=admin
+      - ADMIN_PASS=${SERVICE_PASSWORD_ADMIN}
+      - PREVIEW_TOKEN=${SERVICE_PASSWORD_SESSION}
+      - CF_API_TOKEN=${CLOUDFLARE_API_TOKEN:?}
+      - CF_PROJECT=${CF_PAGES_PROJECT:?}
+      - CF_ACCOUNT_ID=${CLOUDFLARE_ACCOUNT_ID:-}
     volumes:
-      - app-data:/data
+      - app-data:/app/data
 
 volumes:
   app-data:
