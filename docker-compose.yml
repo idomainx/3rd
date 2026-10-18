@@ -1,0 +1,20 @@
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    environment:
+      - SERVICE_FQDN_APP_3000
+      - NODE_ENV=production
+      - PORT=3000
+      - DATA_DIR=/data
+      - ADMIN_PASSWORD=${SERVICE_PASSWORD_ADMIN}
+      - SESSION_SECRET=${SERVICE_PASSWORD_SESSION}
+      - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN:?}
+      - CF_PAGES_PROJECT=${CF_PAGES_PROJECT:?}
+      - CLOUDFLARE_ACCOUNT_ID=${CLOUDFLARE_ACCOUNT_ID:-}
+      - CF_PAGES_BRANCH=${CF_PAGES_BRANCH:-main}
+    volumes:
+      - app-data:/data
+
+volumes:
+  app-data:
