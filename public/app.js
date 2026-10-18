@@ -35,7 +35,7 @@ function toast(msg, isErr) {
 }
 
 // ---------- Routing ----------
-let route = { page: 'entries' };
+let route = { page: 'entries', params: {} };
 
 // Render the current route.
 function navigate(page, params) {
